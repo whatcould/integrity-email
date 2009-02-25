@@ -6,15 +6,15 @@ module Integrity
   class Notifier
     class Email < Notifier::Base
       attr_reader :to, :from
-      
+
       def self.to_haml
         File.read File.dirname(__FILE__) / "config.haml"
       end
 
-      def initialize(build, config={})
+      def initialize(commit, config={})
         @to     = config.delete("to")
         @from   = config.delete("from")
-        super
+        super(commit, config)
         configure_mailer
       end
 
@@ -30,19 +30,19 @@ module Integrity
           :subject => subject
         )
       end
-      
+
       def subject
         "[Integrity] #{build.project.name}: #{short_message}"
       end
 
       alias :body :full_message
-      
+
       private
 
         def configure_mailer
-          user = @config["user"]
-          pass = @config["pass"]
-          
+          user = @config["user"] || ""
+          pass = @config["pass"] || ""
+
           user = pass = nil if user.empty? && pass.empty?
           Sinatra::Mailer.delivery_method = "net_smtp"
           Sinatra::Mailer.config = {
