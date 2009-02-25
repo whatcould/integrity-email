@@ -1,4 +1,8 @@
-require File.dirname(__FILE__) + "/test_helper"
+require "test/unit"
+require "redgreen"
+require "integrity/notifier/test_helper"
+
+require File.dirname(__FILE__) + "/../lib/notifier/email"
 
 class MailTest < Test::Unit::TestCase
   include NotifierHelpers
