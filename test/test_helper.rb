@@ -7,6 +7,7 @@ begin
 rescue LoadError
 end
 
+require File.dirname(__FILE__) + "/fixtures"
 require File.dirname(__FILE__) + "/../lib/notifier/email"
 
 module HpricotAssertions
@@ -74,5 +75,20 @@ end
 
 module NotifierHelpers
   include NotifierFormHelpers
-end
 
+  def build
+    @build ||= Integrity::Build.gen(:successful)
+  end
+
+  def commit
+    @commit ||= build.commit
+  end
+
+  def notifier_class
+    Integrity::Notifier.const_get(notifier)
+  end
+
+  def notification
+    notifier_class.new(commit).body
+  end
+end

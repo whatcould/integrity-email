@@ -19,4 +19,11 @@ class MailTest < Test::Unit::TestCase
     assert_form_have_option "pass",  "secret"
     assert_form_have_option "domain","localhost"
   end
+
+  def test_notification_content
+    assert notification.include?("Build")
+    assert notification.include?("Build #{commit.identifier} was successful")
+    assert notification.include?(commit.author.name)
+    assert notification.include?(commit.output)
+  end
 end
