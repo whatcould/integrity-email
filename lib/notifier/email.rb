@@ -32,7 +32,7 @@ module Integrity
       end
 
       def subject
-        "[Integrity] #{build.project.name}: #{short_message}"
+        "[Integrity] #{commit.project.name}: #{short_message}"
       end
 
       alias_method :body, :full_message
