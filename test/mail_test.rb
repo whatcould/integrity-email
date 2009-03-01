@@ -1,14 +1,36 @@
 require "test/unit"
-require "redgreen"
+require "rumbster"
+require "message_observers"
 require "integrity/notifier/test_helper"
+
+begin
+  require "redgreen"
+rescue LoadError
+end
 
 require File.dirname(__FILE__) + "/../lib/notifier/email"
 
 class MailTest < Test::Unit::TestCase
   include NotifierHelpers
 
+  MAIL_SERVER_PORT = 10_000
+
   def notifier
     "Email"
+  end
+
+  def setup
+    Net::SMTP.disable_tls
+
+    @server        = Rumbster.new(MAIL_SERVER_PORT)
+    @mail_observer = MailMessageObserver.new
+    @server.add_observer(@mail_observer)
+
+    @server.start
+  end
+
+  def teardown
+    @server.stop
   end
 
   def test_configuration_form
@@ -24,10 +46,21 @@ class MailTest < Test::Unit::TestCase
     assert_form_have_option "domain","localhost"
   end
 
-  def test_notification_content
-    assert notification.include?("Build")
-    assert notification.include?("Build #{commit.identifier} was successful")
-    assert notification.include?(commit.author.name)
-    assert notification.include?(commit.output)
+  def test_it_sends_email_notification
+    config = { "host" => "127.0.0.1",
+               "port" => MAIL_SERVER_PORT,
+               "to"   => "you@example.org",
+               "from" => "me@example.org"  }
+
+    Integrity::Notifier::Email.new(commit, config).deliver!
+
+    mail = @mail_observer.messages.first
+
+    assert_equal ["you@example.org"], mail.destinations
+    assert_equal ["me@example.org"],  mail.from
+    assert mail.subject.include?("successful")
+    assert mail.body.include?(commit.committed_at.to_s)
+    assert mail.body.include?(commit.author.name)
+    assert mail.body.include?(commit.output)
   end
 end
