@@ -8,7 +8,7 @@ module Integrity
       attr_reader :to, :from
 
       def self.to_haml
-        File.read File.dirname(__FILE__) / "config.haml"
+        File.read(File.dirname(__FILE__) + "/config.haml")
       end
 
       def initialize(commit, config={})
@@ -24,10 +24,10 @@ module Integrity
 
       def email
         @email ||= Sinatra::Mailer::Email.new(
-          :to => to,
-          :from => from,
-          :text => body,
-          :subject => subject
+          :to       => to,
+          :from     => from,
+          :text     => body,
+          :subject  => subject
         )
       end
 
@@ -35,16 +35,17 @@ module Integrity
         "[Integrity] #{build.project.name}: #{short_message}"
       end
 
-      alias :body :full_message
+      alias_method :body, :full_message
 
       private
-
         def configure_mailer
           user = @config["user"] || ""
           pass = @config["pass"] || ""
+          user = nil if user.empty?
+          pass = nil if pass.empty?
 
-          user = pass = nil if user.empty? && pass.empty?
           Sinatra::Mailer.delivery_method = "net_smtp"
+
           Sinatra::Mailer.config = {
             :host => @config["host"],
             :port => @config["port"],
