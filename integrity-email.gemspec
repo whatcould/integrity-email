@@ -14,6 +14,6 @@ Gem::Specification.new do |s|
                           lib/notifier/email.rb
                         )
 
-  s.add_dependency 'foca-integrity'
-  s.add_dependency 'foca-sinatra-diddies', ['>= 0.0.2']
+  s.add_dependency 'integrity'
+  s.add_dependency 'sinatra-ditties', ['>= 0.0.2']
 end

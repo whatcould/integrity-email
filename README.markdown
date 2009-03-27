@@ -11,8 +11,8 @@ This lets Integrity send emails after each build is made.
 Setup Instructions
 ==================
 
-Just install this gem via `sudo gem install -s http://gems.github.com 
-foca-integrity-email` and then in your Rackup (ie, `config.ru`) file:
+Just install this gem via `sudo gem install integrity-email` and then in your
+Rackup (ie, `config.ru`) file:
 
     require "rubygems"
     require "notifier/email"

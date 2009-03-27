@@ -1,5 +1,5 @@
 require "integrity"
-require "diddies/mailer"
+require "sinatra/ditties/mailer"
 
 module Integrity
   class Notifier
