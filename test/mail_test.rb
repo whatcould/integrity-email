@@ -8,7 +8,7 @@ begin
 rescue LoadError
 end
 
-require File.dirname(__FILE__) + "/../lib/notifier/email"
+require File.dirname(__FILE__) + "/../lib/integrity/notifier/email"
 
 class MailTest < Test::Unit::TestCase
   include Integrity::Notifier::Test
