@@ -8,12 +8,17 @@ Gem::Specification.new do |s|
   s.email             = "contacto@nicolassanguinetti.info"
   s.authors           = ["Nicolás Sanguinetti"]
   s.has_rdoc          = false
-  s.files             = %w(
-                          README.markdown
-                          lib/notifier/config.haml
-                          lib/notifier/email.rb
-                        )
 
   s.add_dependency "integrity"
   s.add_dependency "sinatra-ditties", [">= 0.0.2"]
+
+  s.files             = %w[
+README.markdown
+Rakefile
+integrity-email.gemspec
+lib/integrity/notifier/config.haml
+lib/integrity/notifier/email.rb
+test/fixtures.rb
+test/mail_test.rb
+]
 end
