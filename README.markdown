@@ -15,10 +15,10 @@ Just install this gem via `sudo gem install integrity-email` and then in your
 Rackup (ie, `config.ru`) file:
 
     require "rubygems"
-    require "notifier/email"
+    require "integrity/notifier/email"
 
 And badabing! Now you can set up your projects to send emails after
-each build (just edit the project and the config options should be 
+each build (just edit the project and the config options should be
 there)
 
 License
