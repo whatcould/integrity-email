@@ -12,6 +12,10 @@ Gem::Specification.new do |s|
   s.add_dependency "integrity"
   s.add_dependency "sinatra-ditties", [">= 0.0.2"]
 
+  if s.respond_to?(:add_development_dependency)
+    s.add_development_dependency "rumbster"
+  end
+
   s.files             = %w[
 README.markdown
 Rakefile
