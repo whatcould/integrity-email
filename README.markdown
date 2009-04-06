@@ -26,7 +26,7 @@ License
 
 (The MIT License)
 
-Copyright (c) 2008 [Nicolás Sanguinetti][foca], [entp][]
+Copyright (c) 2008, 2009 [Nicolás Sanguinetti][foca], [entp][]
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
