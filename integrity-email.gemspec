@@ -18,6 +18,6 @@ Rakefile
 integrity-email.gemspec
 lib/integrity/notifier/config.haml
 lib/integrity/notifier/email.rb
-test/mail_test.rb
+test/integrity_email_test.rb
 ]
 end

@@ -1,7 +1,7 @@
 task :default => :test
 
 task :test do
-  ruby "test/mail_test.rb"
+  ruby "test/integrity_email_test.rb"
 end
 
 begin

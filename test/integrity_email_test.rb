@@ -10,7 +10,7 @@ end
 
 require File.dirname(__FILE__) + "/../lib/integrity/notifier/email"
 
-class MailTest < Test::Unit::TestCase
+class IntegrityEmailTest < Test::Unit::TestCase
   include Integrity::Notifier::Test
 
   MAIL_SERVER_PORT = 10_000
