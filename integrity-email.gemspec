@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name              = "integrity-email"
-  s.version           = "1.0.1"
-  s.date              = "2008-11-16"
+  s.version           = "1.0.2"
+  s.date              = "2009-04-06"
   s.summary           = "Email notifier for the Integrity continuous integration server"
   s.description       = "Easily let Integrity send emails after each build"
   s.homepage          = "http://integrityapp.com"
-  s.email             = "contacto@nicolassanguinetti.info"
-  s.authors           = ["Nicolás Sanguinetti"]
+  s.email             = "info@integrityapp.com"
+  s.authors           = ["Nicolás Sanguinetti", "Simon Rozet"]
   s.has_rdoc          = false
 
   s.add_dependency "integrity"
@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
   if s.respond_to?(:add_development_dependency)
     s.add_development_dependency "rumbster"
   end
+
+  s.rubyforge_project = "integrity"
 
   s.files             = %w[
 README.markdown
