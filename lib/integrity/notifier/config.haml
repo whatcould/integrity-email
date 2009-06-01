@@ -29,3 +29,10 @@
 %p.normal
   %label{ :for => "email_notifier_domain" } Domain
   %input.text#email_notifier_domain{ :name => "notifiers[Email][domain]", :value => config["domain"], :type => "text" }
+
+
+%h3 Or, enter the path to sendmail:
+
+%p.normal
+  %label{ :for => "email_notifier_sendmail" } Sendmail path (often /usr/sbin/sendmail)
+  %input.text#email_notifier_sendmail{ :name => "notifiers[Email][sendmail]", :value => config["sendmail"], :type => "text" }
